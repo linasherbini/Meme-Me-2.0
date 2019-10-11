@@ -13,10 +13,10 @@ class SentMemesCollectionViewController: UICollectionViewController {
     
     @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
     
-    var SavedMemes: [MemeMe]! {
+    var savedMemes: [MemeMe]! {
         let object = UIApplication.shared.delegate
         let appDelegate = object as! AppDelegate
-        return appDelegate.SavedMemes
+        return appDelegate.savedMemes
     }
     //MARK:- View functions & Life Cycle
     override func viewDidLoad() {
@@ -35,19 +35,19 @@ class SentMemesCollectionViewController: UICollectionViewController {
     //MARK:- Setting Up Collection View
     //numbers of items in collection view depends on numbers of items in SavedMemes
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.SavedMemes.count
+        return self.savedMemes.count
     }
     //setting up a collection view cell
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SentMemesCollectionViewCell", for: indexPath) as! SentMemesCollectionViewCells
-        let meme = self.SavedMemes[(indexPath as NSIndexPath).row]
+        let meme = self.savedMemes[(indexPath as NSIndexPath).row]
         cell.memeImage?.image = meme.memeImage
         return cell
     }
     //when a cell is selected the detail view appears
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let memeDetailView = self.storyboard!.instantiateViewController(withIdentifier: "MemeDetailViewController") as! MemeDetailViewController
-        memeDetailView.meme = self.SavedMemes[(indexPath as NSIndexPath).row]
+        memeDetailView.meme = self.savedMemes[(indexPath as NSIndexPath).row]
         self.navigationController!.pushViewController(memeDetailView, animated: true)
     }
     //MARK:- Add New Meme

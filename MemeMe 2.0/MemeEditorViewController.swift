@@ -109,7 +109,7 @@ UINavigationControllerDelegate , UITextFieldDelegate {
         
         let object = UIApplication.shared.delegate
         let appDelegate = object as! AppDelegate
-        appDelegate.SavedMemes.append(meme)
+        appDelegate.savedMemes.append(meme)
         self.dismiss(animated: true, completion: nil)
     }
     //generates a memed picture with texts
